@@ -23,12 +23,12 @@ public class JsonToOrcWriterTest {
         fields.addAll(Arrays.asList(tClass.getDeclaredFields()));
         for (Field field : fields) {
             final String name = field.getName();
-           final String humpToLine = CamelCaseKit.humpToLine(name);
+            final String humpToLine = CamelCaseKit.humpToLine(name);
             BufferedReader reader = new BufferedReader(new FileReader(inputFile));
             final JSONObject object = JSON.parseObject(reader.readLine());
             JSONObject jsonObject = JSONObject.parseObject(CamelCaseKit.humpToLine(object.toString()));
-            if(!jsonObject.containsKey(humpToLine)) System.out.println(humpToLine);
-            }
+            if (!jsonObject.containsKey(humpToLine)) System.out.println(humpToLine);
         }
+    }
 
 }
