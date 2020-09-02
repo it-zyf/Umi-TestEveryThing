@@ -22,4 +22,7 @@ public class Mail {
         MailUtil.send("1457937239@qq.com", "小亚亚", "<h1>欢迎来到小亚亚Time,PLEASE CONTINUE</h1>", true, FileUtil.file("P:\\hello.txt"));
 
     }
+
+
+
 }

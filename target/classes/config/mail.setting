@@ -4,4 +4,4 @@ host = smtp.qq.com
 port = 25
 # 发件人（必须正确，否则发送失败）
 from = 761769578@qq.com
-pass = wiaqkhysauetbfci
+pass = 123
