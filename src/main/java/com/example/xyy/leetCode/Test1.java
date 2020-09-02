@@ -25,4 +25,8 @@ public class Test1 {
         return null;
 
     }
+
+    public void test(){
+        System.out.println("hahah");
+    }
 }
