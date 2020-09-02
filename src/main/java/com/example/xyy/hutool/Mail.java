@@ -1,6 +1,5 @@
 package com.example.xyy.hutool;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.extra.mail.MailUtil;
 import org.junit.Test;
