@@ -15,17 +15,13 @@ public class Register {
     @RequestMapping("/test")
     public void register() {
         HashMap<Object, Object> map = new HashMap<>();
-        map.put("姓名", "张三");
+        map.put("姓名", "陈树珍");
         map.put("年龄", 19);
-        map.put("账号", "curyy");
+        map.put("邮箱","1457937239@qq.com");
+        map.put("账号", "csz");
         map.put("密码", "123");
         registerService.register(map);
 
-    }
-
-    @RequestMapping("/hello")
-    public String hello(){
-        return "hello1111";
     }
 
 }

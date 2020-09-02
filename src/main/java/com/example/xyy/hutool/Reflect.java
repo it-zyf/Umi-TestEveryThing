@@ -33,8 +33,8 @@ public class Reflect {
     @Test
     public void test2() {
         Register register = ReflectUtil.newInstance(Register.class);
-        String hello = register.hello();
-        System.out.println(hello);
+//        String hello = register.hello();
+//        System.out.println(hello);
 
     }
 

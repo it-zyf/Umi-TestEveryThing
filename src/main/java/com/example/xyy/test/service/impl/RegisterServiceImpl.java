@@ -1,12 +1,15 @@
 package com.example.xyy.test.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.example.xyy.mapper.RegisterMapper;
+import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -22,10 +25,20 @@ public class RegisterServiceImpl implements RegisterService {
             userName = (String) map.get("账号");
             //对密码进行加密
             String passWord = encoder.encode((String)map.get("密码"));
-             registerMapper.insert(userName,passWord);
+            String mail=(String)map.get("邮箱");
+             registerMapper.insert(userName,passWord,mail);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<Login> findUserMail() {
+        List<Login> userMail = registerMapper.findUserMail();
+        if(CollUtil.isNotEmpty(userMail)){
+            registerMapper.delete();
+        }
+        return userMail;
     }
 }
