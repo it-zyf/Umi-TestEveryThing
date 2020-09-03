@@ -19,7 +19,8 @@ public class RedisTest {
 
     @RequestMapping("/test")
     public void test() {
-        redisTemplate.opsForSet().add("name", "xyy");
+        Boolean name1 = redisTemplate.delete("name");
+        redisTemplate.opsForValue().set("name","xyy");
         String name = (String) redisTemplate.opsForValue().get("name");
         System.out.println(name);
     }

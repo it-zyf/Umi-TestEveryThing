@@ -3,13 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.xyy.mapper.RegisterMapper">
-    <resultMap id="BaseResultMap" type="com.example.xyy.test.bean.Login" >
-        <id column="username" property="userName" />
-        <id column="password" property="passWord" />
+    <resultMap id="BaseResultMap" type="com.example.xyy.test.bean.Login">
+        <id column="username" property="userName"/>
+        <id column="password" property="passWord"/>
+        <id column="mail" property="mail"/>
     </resultMap>
 
-    <insert id="insert" parameterType="string" >
-    insert into user (username,password)
-    values (#{userName},#{passWord})
+    <insert id="insert" parameterType="string">
+    insert into user (username,password,mail)
+    values (#{userName},#{passWord},#{mail})
   </insert>
+   <select id="findUserMail" resultMap="BaseResultMap" >
+       select  * from user;
+   </select>
+
+    <delete id="delete" >
+        delete from user;
+    </delete>
+
 </mapper>
