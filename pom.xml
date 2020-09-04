@@ -127,9 +127,31 @@
             <artifactId>jedis</artifactId>
             <version>2.9.1</version>
         </dependency>
+
+        <!--一个基于springboot的快速集成多数据源的启动器-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
     </dependencies>
 
+
     <build>
+        <!--使dao层编译后在一起-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,6 +1,7 @@
 package com.example.xyy.test.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.example.xyy.mapper.RegisterMapper;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
@@ -40,5 +41,11 @@ public class RegisterServiceImpl implements RegisterService {
             registerMapper.delete();
         }
         return userMail;
+    }
+
+    @Override
+    @DS("slave_1")
+    public List<Login> findTestByDynamic() {
+        return registerMapper.findUserMail();
     }
 }

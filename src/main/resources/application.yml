@@ -4,10 +4,19 @@ jwt:
   config: xyy
 spring:
   datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.jdbc.Driver
+    dynamic:
+      primary: master
+      datasource:
+        master:
+          username: root
+          password: root
+          url: jdbc:mysql://localhost:3306/login?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+          driver-class-name: com.mysql.jdbc.Driver
+        slave_1:
+          username: root
+          password: root
+          url: jdbc:mysql://localhost:3306/login2?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+          driver-class-name: com.mysql.jdbc.Driver
   redis:
     port: 6379
     host: localhost

@@ -7,6 +7,7 @@ import cn.hutool.extra.mail.MailUtil;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,11 +24,11 @@ public class TaskSendMail {
     private RegisterService registerService;
 
 //    @Scheduled(cron = "*/5 * * * * ?")
-    public void taskSendMail(){
+    public void taskSendMail() {
         List<Login> userMail = registerService.findUserMail();
-        if (CollUtil.isNotEmpty(userMail)){
+        if (CollUtil.isNotEmpty(userMail)) {
             for (Login login : userMail) {
-                if (StrUtil.isNotBlank(login.getMail())){
+                if (StrUtil.isNotBlank(login.getMail())) {
                     MailUtil.send(login.getMail(), login.getUserName(), "<h1>欢迎来到小亚亚Time,PLEASE CONTINUE</h1>", true, FileUtil.file("P:\\hello.txt"));
                 }
             }
