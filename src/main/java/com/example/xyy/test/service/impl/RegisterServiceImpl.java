@@ -6,6 +6,8 @@ import com.example.xyy.mapper.RegisterMapper;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class RegisterServiceImpl implements RegisterService {
     private RegisterMapper registerMapper;
     @Autowired
     private BCryptPasswordEncoder encoder;
+
 
     @Override
     public void register(Map map) {
