@@ -7,7 +7,6 @@ import cn.hutool.extra.mail.MailUtil;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
