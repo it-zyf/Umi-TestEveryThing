@@ -16,10 +16,10 @@ public class ThreadPoolDemo {
             strings.add(String.valueOf(i));
         }
         ExecutorService ex = Executors.newFixedThreadPool(7);
-//        final Future<Integer> f1 = ex.submit(new GetSum(100));
-//        final Future<Integer> f2 = ex.submit(new GetSum(200));
-        ex.submit(new TreadPoolDemo1(strings));
-        ex.submit(new TreadPoolDemo1(strings));
+        final Future<Integer> f1 = ex.submit(new GetSum(100));
+        final Future<Integer> f2 = ex.submit(new GetSum(200));
+//        ex.submit(new TreadPoolDemo1(strings));
+//        ex.submit(new TreadPoolDemo1(strings));
 //        ex.submit(new TreadPoolDemo1(strings.subList(100,150)));
 //        ex.submit(new TreadPoolDemo1(strings.subList(150,200)));
 //        ex.submit(new TreadPoolDemo1(strings.subList(200,250)));
@@ -27,8 +27,8 @@ public class ThreadPoolDemo {
 //        ex.submit(new TreadPoolDemo1(strings.subList(300,350)));
 //        ex.submit(new TreadPoolDemo1(strings.subList(350,strings.size())));
 
-//        System.out.println(f1.get());
-//        System.out.println(f2.get());
+        System.out.println(f1.get());
+        System.out.println(f2.get());
         ex.shutdown();
 
         while (true) {

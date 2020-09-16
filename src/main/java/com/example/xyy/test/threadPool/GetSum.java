@@ -15,6 +15,7 @@ public class GetSum implements Callable<Integer> {
         for (int i = 0; i <=a; i++) {
             sum=sum+i;
         }
+        Thread.sleep(20000);
         return sum;
 
     }
