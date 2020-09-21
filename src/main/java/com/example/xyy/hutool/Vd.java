@@ -24,6 +24,8 @@ public class Vd {
         boolean sss = Validator.isNumber("1232.21312");
 
 
+
+
         String format = percentFormat.format("0.06");
 
     }

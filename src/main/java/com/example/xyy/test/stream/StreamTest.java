@@ -10,8 +10,16 @@ package com.example.xyy.test.stream;
     6. 根据姓名创建Person对象；存储到一个新集合中
     7. 打印整个队伍的Person对象信息。
  */
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
+import com.example.xyy.entity.User;
+import com.google.common.primitives.Doubles;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTest {
@@ -53,4 +61,38 @@ public class StreamTest {
         Stream.concat(oneStream,twoStream).map(Person::new).forEach(System.out::println);
 
     }
+
+    //todo 肯定有更好的写法......
+    @Test
+    public void test() {
+        AtomicReference<Double> a1 = new AtomicReference<>(0.0);
+        AtomicReference<Double> b = new AtomicReference<>(0.0);
+        AtomicReference<Double> c = new AtomicReference<>(0.0);
+        AtomicReference<Double> d = new AtomicReference<>(0.0);
+        ArrayList<User> users = new ArrayList<>();
+        User user = new User("xyy", null, "男", "120");
+        User user2 = new User("xyy", "18", "男", "66");
+//        User user23 = new User("xyy", "十九", "男", "66");
+//        users.add(user23);
+        users.add(user2);
+        users.add(user2);
+        users.add(user);
+        users.add(user);
+        users.stream().filter(u -> u != null).filter(s -> StrUtil.isNotBlank(s.getAge())).map(User::getAge).collect(Collectors.toList()).forEach(a -> {
+            double v = Double.parseDouble(a);
+            b.updateAndGet(v1 -> v1 + v);
+        });
+        System.out.println(b.toString());//36
+        users.stream().filter(u -> u != null).filter(s -> StrUtil.isNotBlank(s.getSource())).map(User::getSource).collect(Collectors.toList()).forEach(a -> {
+            double v = Double.parseDouble(a);
+            a1.updateAndGet(v1 -> v1 + v);
+        });
+        System.out.println(a1.toString());//372
+
+        String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotBlank(s.getAge())).filter(s->NumberUtil.isNumber(s.getAge())).map(s-> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
+        System.out.println(s1);
+
+    }
+
+
 }
