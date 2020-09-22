@@ -1,21 +1,23 @@
 package com.example.xyy.test.stream;
 /**
-    Stream综合案例_使用Stream流
-    现在有两个ArrayList集合存储队伍当中的多个成员姓名，要求使用传统的for循环（或增强for循环）依次进行以
-    1. 第一个队伍只要名字为3个字的成员姓名；存储到一个新集合中
-    2. 第一个队伍筛选之后只要前3个人；存储到一个新集合中
-    3. 第二个队伍只要姓张的成员姓名；存储到一个新集合中
-    4. 第二个队伍筛选之后不要前2个人；存储到一个新集合中
-    5. 将两个队伍合并为一个队伍；存储到一个新集合中
-    6. 根据姓名创建Person对象；存储到一个新集合中
-    7. 打印整个队伍的Person对象信息。
+ * Stream综合案例_使用Stream流
+ * 现在有两个ArrayList集合存储队伍当中的多个成员姓名，要求使用传统的for循环（或增强for循环）依次进行以
+ * 1. 第一个队伍只要名字为3个字的成员姓名；存储到一个新集合中
+ * 2. 第一个队伍筛选之后只要前3个人；存储到一个新集合中
+ * 3. 第二个队伍只要姓张的成员姓名；存储到一个新集合中
+ * 4. 第二个队伍筛选之后不要前2个人；存储到一个新集合中
+ * 5. 将两个队伍合并为一个队伍；存储到一个新集合中
+ * 6. 根据姓名创建Person对象；存储到一个新集合中
+ * 7. 打印整个队伍的Person对象信息。
  */
+
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import com.example.xyy.entity.User;
 import com.google.common.primitives.Doubles;
 import org.junit.Test;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -58,7 +60,7 @@ public class StreamTest {
         //6. 根据姓名创建Person对象；存储到一个新集合中
         //7. 打印整个队伍的Person对象信息。
         //Stream.concat(oneStream,twoStream).map(name->new Person(name)).forEach(System.out::println);
-        Stream.concat(oneStream,twoStream).map(Person::new).forEach(System.out::println);
+        Stream.concat(oneStream, twoStream).map(Person::new).forEach(System.out::println);
 
     }
 
@@ -78,6 +80,11 @@ public class StreamTest {
         users.add(user2);
         users.add(user);
         users.add(user);
+        users.forEach(u -> {
+            if (StrUtil.isNotEmpty(u.getAge())) {
+                System.out.println(u.getAge());
+            }
+        });
         users.stream().filter(u -> u != null).filter(s -> StrUtil.isNotBlank(s.getAge())).map(User::getAge).collect(Collectors.toList()).forEach(a -> {
             double v = Double.parseDouble(a);
             b.updateAndGet(v1 -> v1 + v);
@@ -89,8 +96,12 @@ public class StreamTest {
         });
         System.out.println(a1.toString());//372
 
-        String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotBlank(s.getAge())).filter(s->NumberUtil.isNumber(s.getAge())).map(s-> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
+        String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotBlank(s.getAge())).filter(s -> NumberUtil.isNumber(s.getAge())).map(s -> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
         System.out.println(s1);
+
+        users.stream().filter(u -> u != null).filter(u -> StrUtil.isNotBlank(u.getAge())).forEach(u -> System.out.println(u));
+
+
 
     }
 
