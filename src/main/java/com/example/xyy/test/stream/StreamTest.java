@@ -11,14 +11,18 @@ package com.example.xyy.test.stream;
  * 7. 打印整个队伍的Person对象信息。
  */
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import com.example.xyy.entity.User;
+import com.example.xyy.test.threadPool.GetSum;
 import com.google.common.primitives.Doubles;
 import org.junit.Test;
 
 import java.sql.Struct;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -96,12 +100,39 @@ public class StreamTest {
         });
         System.out.println(a1.toString());//372
 
-        String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotBlank(s.getAge())).filter(s -> NumberUtil.isNumber(s.getAge())).map(s -> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
+        String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotEmpty(s.getAge())).filter(s -> NumberUtil.isNumber(s.getAge())).map(s -> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
         System.out.println(s1);
+
 
         users.stream().filter(u -> u != null).filter(u -> StrUtil.isNotBlank(u.getAge())).forEach(u -> System.out.println(u));
 
 
+    }
+
+    //TODO filter过滤器留下过滤内容为true的.
+    @Test
+    public void test3() {
+        User user = new User("xyy", null, "男", "120");
+        User user2 = new User("xyy", "18", "男", "66");
+        User user3 = new User("xyy", "十八", "男", "66");
+        User user4 = new User("xyy", "20", "男", "66");
+        ArrayList<User> users = new ArrayList<>();
+        users.add(user2);
+        users.add(user3);
+        users.add(user);
+        users.add(user4);
+        String s = users.stream().filter(user1 -> null != user1).filter(user1 -> StrUtil.isNotEmpty(user1.getAge())).filter(user1 -> NumberUtil.isNumber(user1.getAge())).map(user1 -> Double.parseDouble(user1.getAge())).reduce(Double::sum).get().toString();
+        System.out.println(s);
+    }
+
+
+    @Test
+    public void test1() {
+        boolean isBean = BeanUtil.isBean(User.class);
+        System.out.println(isBean);
+        User user = new User("张三", "19", "男", "100");
+        HashMap<Object, Object> map = MapUtil.newHashMap();
+        BeanUtil.copyProperties(user, map);
 
     }
 
