@@ -2,6 +2,7 @@ package com.example.xyy.test.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
+import com.example.xyy.entity.User_R;
 import com.example.xyy.mapper.RegisterMapper;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
@@ -23,14 +24,11 @@ public class RegisterServiceImpl implements RegisterService {
 
 
     @Override
-    public void register(Map map) {
-        String userName = null;
+    public void register(User_R user) {
         try {
-            userName = (String) map.get("账号");
             //对密码进行加密
-            String passWord = encoder.encode((String)map.get("密码"));
-            String mail=(String)map.get("邮箱");
-             registerMapper.insert(userName,passWord,mail);
+            user.setPassWord(encoder.encode(user.getPassWord()));
+             registerMapper.insert(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

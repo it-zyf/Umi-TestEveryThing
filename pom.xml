@@ -157,6 +157,13 @@
             <artifactId>guava</artifactId>
             <version>29.0-jre</version>
         </dependency>
+        <!--pdf maven-->
+        <dependency>
+            <scope>compile</scope>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.21</version>
+        </dependency>
     </dependencies>
 
 

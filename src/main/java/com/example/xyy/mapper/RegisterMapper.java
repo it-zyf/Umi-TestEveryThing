@@ -1,5 +1,6 @@
 package com.example.xyy.mapper;
 
+import com.example.xyy.entity.User_R;
 import com.example.xyy.test.bean.Login;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface RegisterMapper {
 
-    void insert(@PathParam("userName") String userName, @PathParam("passWord") String passWord, String mail);
+    void insert(User_R user);
 
     List<Login> findUserMail();
 

@@ -9,7 +9,7 @@
         <id column="mail" property="mail"/>
     </resultMap>
 
-    <insert id="insert" parameterType="string">
+    <insert id="insert" parameterType="com.example.xyy.entity.User_R">
     insert into user (username,password,mail)
     values (#{userName},#{passWord},#{mail})
   </insert>

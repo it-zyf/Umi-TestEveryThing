@@ -89,6 +89,9 @@ public class StreamTest {
                 System.out.println(u.getAge());
             }
         });
+        String s2 = users.stream().filter(u -> null != u).filter(u -> StrUtil.isNotEmpty(u.getAge())).filter(u -> NumberUtil.isNumber(u.getAge())).map(u -> Double.parseDouble(u.getAge())).reduce(Double::sum).get().toString();
+        System.out.println(s2);
+
         users.stream().filter(u -> u != null).filter(s -> StrUtil.isNotBlank(s.getAge())).map(User::getAge).collect(Collectors.toList()).forEach(a -> {
             double v = Double.parseDouble(a);
             b.updateAndGet(v1 -> v1 + v);
@@ -121,7 +124,7 @@ public class StreamTest {
         users.add(user3);
         users.add(user);
         users.add(user4);
-        String s = users.stream().filter(user1 -> null != user1).filter(user1 -> StrUtil.isNotEmpty(user1.getAge())).filter(user1 -> NumberUtil.isNumber(user1.getAge())).map(user1 -> Double.parseDouble(user1.getAge())).reduce(Double::sum).get().toString();
+        String s = users.stream().filter(u -> null != u).filter(u -> StrUtil.isNotEmpty(u.getAge())).filter(u -> NumberUtil.isNumber(u.getAge())).map(u -> Double.parseDouble(u.getAge())).reduce(Double::sum).get().toString();
         System.out.println(s);
     }
 

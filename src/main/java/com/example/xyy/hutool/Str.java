@@ -1,8 +1,11 @@
 package com.example.xyy.hutool;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.Month;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 /**
  * @author yayu
@@ -43,6 +46,19 @@ public class Str {
     public void test4(){
         boolean zyd = NumberUtil.isNumber("..12312313.12313");
         System.out.println(zyd);
+    }
+
+    @Test
+    public void test5(){
+        //年龄
+        int i = DateUtil.ageOfNow("1996-07-09");
+        System.out.println(i);
+        //属相
+        String chineseZodiac = DateUtil.getChineseZodiac(1996);
+        System.out.println(chineseZodiac);
+        //星座
+        String zodiac = DateUtil.getZodiac(Month.JULY.getValue(), 9);
+        System.out.println(zodiac);
     }
 
 

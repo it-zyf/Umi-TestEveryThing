@@ -13,5 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //任何权限都可以访问,主要用springSecurity加密
         http .authorizeRequests() .antMatchers("/**").permitAll() .anyRequest().authenticated() .and().csrf().disable(); }
 }
