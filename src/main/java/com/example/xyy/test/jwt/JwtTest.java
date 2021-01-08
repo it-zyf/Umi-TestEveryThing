@@ -6,9 +6,12 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-
+@RestController
+@RequestMapping("/test/token")
 public class JwtTest {
     @Autowired
     private JwtUtil jwtUtil;
@@ -18,12 +21,12 @@ public class JwtTest {
                 .setId("123") //设置id
                 .setSubject("小亚亚")
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "xyy");
-        System.out.println(jwtBuilder);
+                .signWith(SignatureAlgorithm.HS256, "3witxyy123");
+        System.out.println(jwtBuilder.compact());
 
     }
 
-    @Test
+    @RequestMapping("/create")
     public void test(){
         String jwt = jwtUtil.createJWT("1", "xxy", "admin");
         System.out.println(jwt);

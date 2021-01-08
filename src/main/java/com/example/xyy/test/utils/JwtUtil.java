@@ -5,7 +5,6 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -14,12 +13,11 @@ import java.util.Date;
  * Created by Administrator on 2018/4/11.
  */
 @ConfigurationProperties("jwt.config")
-@EnableConfigurationProperties(JwtUtil.class)
 public class JwtUtil {
+    //注意key值不能过短
+    private String key;
 
-    private String key ;
-
-    private long ttl ;//一个小时
+    private long ttl;//一个小时
 
     public String getKey() {
         return key;

@@ -45,6 +45,8 @@ public class Str {
     @Test
     public void test4(){
         boolean zyd = NumberUtil.isNumber("..12312313.12313");
+        String s = NumberUtil.roundStr("19875405.799999997", 2);
+        System.out.println(s);
         System.out.println(zyd);
     }
 

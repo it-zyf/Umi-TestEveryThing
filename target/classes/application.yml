@@ -1,7 +1,9 @@
 server:
   port: 9001
 jwt:
-  config: xyy
+  config:
+    key: 3witxyy123
+    ttl: 360000
 spring:
   datasource:
     dynamic:

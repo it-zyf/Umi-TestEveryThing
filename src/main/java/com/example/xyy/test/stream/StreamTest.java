@@ -106,6 +106,9 @@ public class StreamTest {
         String s1 = users.stream().filter(s -> s != null).filter(s -> StrUtil.isNotEmpty(s.getAge())).filter(s -> NumberUtil.isNumber(s.getAge())).map(s -> Double.parseDouble(s.getAge())).reduce(Double::sum).get().toString();
         System.out.println(s1);
 
+        String w = users.stream().map(s -> Double.parseDouble(s.getAge())).reduce(Double::sum).orElse(0.0).toString();
+
+
 
         users.stream().filter(u -> u != null).filter(u -> StrUtil.isNotBlank(u.getAge())).forEach(u -> System.out.println(u));
 
