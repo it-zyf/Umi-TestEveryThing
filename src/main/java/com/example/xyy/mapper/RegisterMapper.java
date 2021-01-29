@@ -15,4 +15,6 @@ public interface RegisterMapper {
     List<Login> findUserMail();
 
     void delete();
+
+    void insert_login(Login login);
 }

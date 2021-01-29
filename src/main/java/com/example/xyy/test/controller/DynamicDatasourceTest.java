@@ -3,10 +3,13 @@ package com.example.xyy.test.controller;
 import com.example.xyy.test.bean.Login;
 import com.example.xyy.test.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yayu
@@ -24,4 +27,10 @@ public class DynamicDatasourceTest {
         List<Login> userMail = registerService.findTestByDynamic();
         return userMail;
     }
+
+    @RequestMapping("/insert")
+    public Map<String,Object> insert(@RequestBody Login login){
+       return registerService.insert(login);
+    }
+
 }

@@ -13,7 +13,11 @@
     insert into user (username,password,mail)
     values (#{userName},#{passWord},#{mail})
   </insert>
-   <select id="findUserMail" resultMap="BaseResultMap" >
+    <insert id="insert_login" parameterType="com.example.xyy.test.bean.Login">
+         insert into user (username,password,mail)
+    values (#{userName},#{passWord},#{mail})
+    </insert>
+    <select id="findUserMail" resultMap="BaseResultMap" >
        select  * from user;
    </select>
 
